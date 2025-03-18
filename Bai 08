@@ -1,0 +1,57 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int FindMax2(int a[], int m) {
+    int Max = a[m - 1];
+    int Max2 = Max;
+    for (int i = m - 2; i >= 0; i--) {
+        if (a[i] <= Max) {
+            Max2 = a[i];
+            break;
+        }
+    }
+    return Max2;
+}
+
+int FindMin2(int a[], int m) {
+    int Min = a[0];
+    int Min2 = Min;
+
+    for (int i = 1; i < m; i++) {
+        if (a[i] >= Min) {
+            Min2 = a[i];
+            break;
+        }
+    }
+    return Min2;
+}
+
+int main() {
+    int n;
+    cin >> n;
+
+    while (n--) {
+        int m;
+        cin >> m;
+        int a[m];
+
+        for (int i = 0; i < m; i++) {
+            cin >> a[i];
+        }
+
+        if (m == 2) {
+            cout << abs(a[0] - a[1]) << endl;
+            continue;
+        }
+
+        sort(a, a + m);
+        int Max1 = a[m - 1];
+        int Min1 = a[0];
+        int Max2 = FindMax2(a, m);
+        int Min2 = FindMin2(a, m);
+
+        cout << (Max1 - Min1) + (Max2 - Min2) << endl;
+    }
+
+    return 0;
+}
