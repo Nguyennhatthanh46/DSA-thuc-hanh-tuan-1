@@ -1,0 +1,33 @@
+#include <iostream>
+#include <vector>
+#include <algorithm>
+
+using namespace std;
+
+int main()
+{
+    int dem = 0;
+    int n, m;
+    cin >> n >> m;
+    vector<vector<int>> a(n, vector<int>(m));
+    for(int i = 0; i < n; i++){
+        for(int j = 0; j < m; j++){
+            cin >> a[i][j];
+        }
+    }
+    vector<vector<int>> mt(n-2, vector<int>(m));
+    for(int j = 0; j < m; j++){
+        for(int i = 0; i < n - 2 ; i++){
+            mt[i][j] = a[i][j] + a[i + 1][j] + a[i + 2][j];
+        }
+    }
+    int tongnhonhat = 900001;
+    for(int i = 0; i < n-2; i++){
+        for(int j = 0; j < m-2; j++){
+            int tong = mt[i][j] + mt[i][j + 1] + mt[i][j + 2];
+            tongnhonhat = min(tongnhonhat, tong);
+        }
+    }
+    cout << tongnhonhat;
+    return 0;
+}
